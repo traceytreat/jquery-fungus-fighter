@@ -37,6 +37,7 @@ function updatePoints(apCost, hpDamage){
     render();
 
     //check for hp 0 or ap 0
+    //In the case of a draw, player wins
     if (fungusHP === 0){
         if (regenInterval){
             //stop regeneration if it is currently happening
