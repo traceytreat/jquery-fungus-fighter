@@ -4,9 +4,9 @@ $(document).ready(onReady);
 // Feel free to make this to what you want!
 // Example:
 // let fungusHP = 100;
-let fungusHP = 100;
-let ourAP = 100;
-let regenInterval;
+let fungusHP = 100; // fungus HP value
+let ourAP = 100; // our AP value
+let regenInterval; // variable for regeneration time interval
 
 function onReady() {
     
@@ -22,13 +22,16 @@ function onReady() {
 
 }
 function updatePoints(apCost, hpDamage){
-    //update HP and AP
+    //subtract fungus HP based on attack HP damage
     fungusHP -= hpDamage;
     if (fungusHP <= 0){
+        //cannot go below zero
         fungusHP = 0;
     }
+    //subtract AP based on attack AP cost
     ourAP -= apCost;
     if (ourAP <= 0){
+        //cannot go below zero
         ourAP = 0;
     }
     render();
@@ -36,12 +39,14 @@ function updatePoints(apCost, hpDamage){
     //check for hp 0 or ap 0
     if (fungusHP === 0){
         if (regenInterval){
-            //stop regeneration if it is happening
+            //stop regeneration if it is currently happening
             clearInterval(regenInterval);
         }
+        //change fungus class to dead
         $('.freaky-fungus').removeClass('walk');
         $('.freaky-fungus').addClass('dead');
     } else if (ourAP === 0){
+        //change fungus class to jump
         $('.freaky-fungus').removeClass('walk');
         $('.freaky-fungus').addClass('jump');
     }
@@ -81,13 +86,13 @@ function regenHP(){
 }
 
 function render() {
-    //render AP
+    //render AP, show in DOM
     $('#ap-meter').attr("value", ourAP);
     $('.ap-text').html(`
         ${ourAP} AP
     `);
 
-    //render HP
+    //render HP, show in DOM
     $('#hp-meter').attr("value", fungusHP);
     $('.hp-text').html(`
         ${fungusHP} HP
