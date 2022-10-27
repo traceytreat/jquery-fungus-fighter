@@ -31,6 +31,8 @@ function updatePoints(apCost, hpDamage){
     //subtract AP based on attack AP cost
     ourAP -= apCost;
     if (ourAP <= 0){
+        //disables attack buttons
+        $('.attack-btn').prop('disabled', true);
         //cannot go below zero
         ourAP = 0;
     }
