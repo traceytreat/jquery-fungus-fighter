@@ -56,6 +56,7 @@ function updatePoints(apCost, hpDamage){
 
     if (fungusHP < 50 && fungusHP > 0){
         //set regeneration
+        clearInterval(regenInterval);
         regenInterval = setInterval(regenHP, 1000);
     }
 
